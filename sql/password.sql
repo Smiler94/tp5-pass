@@ -1,5 +1,5 @@
 CREATE TABLE `password` (
-	`id` int(10) NOT NULL DEFAULT '0' COMMENT '主键 id',
+	`id` int(10) NOT NULL AUTO_INCREMENT COMMENT '主键 id',
 	`name` varchar(20) NOT NULL DEFAULT '' COMMENT '名称',
 	`account` varchar(100) NOT NULL DEFAULT '' COMMENT '账号',
 	`url` varchar(255) NOT NULL DEFAULT '' COMMENT '网址',
