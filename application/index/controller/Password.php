@@ -26,13 +26,15 @@ class Password extends Common
 
     public function passwordList()
     {
+        $page = Request::param('page', 0);
         $password = new \app\index\model\Password;
-
-        $list = $password->page(0, 10)->select();
+        $count = $password->count();
+        $list = $password->page($page, 10)->select();
 
         return $this->resSuccess([
             'list' => $list,
-            'page_count' => 10
+            'page_count' => ceil($count/10),
+            'record_count' => $count
         ]);
     }
 }
