@@ -27,9 +27,16 @@ class Password extends Common
     public function passwordList()
     {
         $page = Request::param('page', 0);
+        $key_word = Request::param('key_word', '');
         $password = new \app\index\model\Password;
-        $count = $password->count();
-        $list = $password->page($page, 10)->select();
+        $map = [];
+        if ($key_word) {
+            $map = [
+                ['name', 'like', '%'.$key_word.'%']
+            ];
+        }
+        $count = $password->where($map)->count();
+        $list = $password->where($map)->page($page, 10)->select();
 
         return $this->resSuccess([
             'list' => $list,
